@@ -1,3 +1,3 @@
 # Calculator
  
-A calculator built in Java as practice.
+A calculator I am currently builing in Java as a practice project.
