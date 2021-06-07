@@ -72,8 +72,6 @@ public class Main {
 
 }
 
-// Deleted note on versioning
-
 /*
  * ***** TITLE *****
  *  ADDITIONAL NOTES:
