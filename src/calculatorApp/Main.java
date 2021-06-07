@@ -72,12 +72,7 @@ public class Main {
 
 }
 
-/*******************************************
-* TESTING VERSIONING AND BRANCHING IN GITHUB
-********************************************
-*/
-
-
+// Deleted note on versioning
 
 /*
  * ***** TITLE *****
