@@ -3,17 +3,21 @@ package calculatorApp;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class CalculatorGUI {
+public class CalculatorGUI implements ActionListener {
 
 	private static JButton ZeroButton, OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton,
 						EightButton, NineButton, EqualsButton, AdditionButton, SubtractionButton, MultiplicationButton, 
-						DivisionButton, ClearButton;
+						DivisionButton, ClearButton, DecimalButton;
+	private static JTextField textArea;
 	
 	public CalculatorGUI() {
 		
@@ -27,18 +31,20 @@ public class CalculatorGUI {
 		
 		// Creating a panel to hold the calculator buttons
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(4, 5) );
+		buttonPanel.setLayout(new GridLayout(5, 4) );
 		buttonPanel.setBackground(Color.LIGHT_GRAY);
 		
 		// Crating a panel to hold the input/output display label
-		JPanel displayPanel = new JPanel();
-		displayPanel.setBackground(Color.LIGHT_GRAY);
-		
-		// Creating a JLabel to display input and output
-		JLabel displayLabel = new JLabel();
+//		JPanel displayPanel = new JPanel();
+//		displayPanel.setBackground(Color.LIGHT_GRAY);
+//		displayPanel.setSize(240, 150);
+//		
+		// Creating a Text Field to display input and output
+		textArea = new JTextField();
+		textArea.setSize(200, 50);
 		
 		// Adding display label to display panel
-		displayPanel.add(displayLabel);
+//		displayPanel.add(textArea);
 		
 		// Creating buttons for the calculator
 		ZeroButton = new JButton("0");
@@ -55,8 +61,9 @@ public class CalculatorGUI {
 		AdditionButton = new JButton("+");
 		SubtractionButton = new JButton("-");
 		MultiplicationButton = new JButton("x");
-		DivisionButton = new JButton("÷");
+		DivisionButton = new JButton("/");
 		ClearButton = new JButton("C");
+		DecimalButton = new JButton(".");
 		
 		// Setting button colors - SET THESE LATER
 //		ZeroButton.setBackground(Color.GRAY);
@@ -77,6 +84,24 @@ public class CalculatorGUI {
 //		ClearButton.setBackground(Color.BLUE);
 		
 		// Adding ActionListeners to buttons
+		ZeroButton.addActionListener(this);
+		OneButton.addActionListener(this);
+		TwoButton.addActionListener(this);
+		ThreeButton.addActionListener(this);
+		FourButton.addActionListener(this);
+		FiveButton.addActionListener(this);
+		SixButton.addActionListener(this);
+		SevenButton.addActionListener(this);
+		EightButton.addActionListener(this);
+		NineButton.addActionListener(this);
+		EqualsButton.addActionListener(this);
+		AdditionButton.addActionListener(this);
+		SubtractionButton.addActionListener(this);
+		MultiplicationButton.addActionListener(this);
+		DivisionButton.addActionListener(this);
+		ClearButton.addActionListener(this);
+		DecimalButton.addActionListener(this);
+		
 		
 		// Adding buttons to the calculator panel
 		buttonPanel.add(SevenButton);
@@ -95,10 +120,11 @@ public class CalculatorGUI {
 		buttonPanel.add(ZeroButton);		
 		buttonPanel.add(EqualsButton);
 		buttonPanel.add(DivisionButton);
-
+		buttonPanel.add(DecimalButton);
 		
 		// Adding the panels to the window
-		frame.add(displayPanel);
+//		frame.add(displayPanel);
+		frame.add(textArea);
 		frame.add(buttonPanel);		
 		
 		// Making the panel visible
@@ -107,6 +133,12 @@ public class CalculatorGUI {
 		frame.setVisible(true);
 	}
 	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		System.out.println("It Worked!");
+	}
+		
 	public static void main(String[] args) {
 		
 		
