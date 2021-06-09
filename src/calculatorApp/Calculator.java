@@ -4,34 +4,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class Calculator {
+public class Calculator implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
-	
-<<<<<<< Updated upstream
-	private int value1;
-	private int value2;
-	private int result;
-=======
+	private JButton ZeroButton, OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton,
+	EightButton, NineButton, EqualsButton, AdditionButton, SubtractionButton, MultiplicationButton, DivisionButton,
+	ClearButton, DecimalButton;
 	private double num1, num2, result;
->>>>>>> Stashed changes
 	private char operator;
+	private JTextField TextArea;
 	
 	public Calculator() {
-<<<<<<< Updated upstream
-
-		// Create calculator GUI
-		CalculatorGUI GUI = new CalculatorGUI();
-		
-	}
-=======
-		
+				
 		// Creating a window for the calculator
 		JFrame frame = new JFrame();
 		frame.setTitle("Calculator");
@@ -51,9 +43,9 @@ public class Calculator {
 //		displayPanel.setSize(240, 150);
 //		
 		// Creating a Text Field to display input and output
-		textArea = new JTextField();
-		textArea.setSize(200, 50);
-		textArea.setEditable(false);
+		TextArea = new JTextField();
+		TextArea.setSize(200, 50);
+		TextArea.setEditable(false);
 		
 		// Adding display label to display panel
 //		displayPanel.add(textArea);
@@ -136,7 +128,7 @@ public class Calculator {
 		
 		// Adding the panels to the window
 //		frame.add(displayPanel);
-		frame.add(textArea);
+		frame.add(TextArea);
 		frame.add(buttonPanel);		
 		
 		// Making the panel visible
@@ -148,28 +140,58 @@ public class Calculator {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println("It Worked!");
-		
 		if (e.getSource() == ZeroButton) {
-			textArea.setText("1");
-			num1 = num1 * 10 + 1;
-			
+			TextArea.setText(TextArea.getText() + "0");
+			num1 = num1 * 10 + 0;
 		} else if (e.getSource() == OneButton) {
-			
+			TextArea.setText(TextArea.getText() + "1");
+			num1 = num1 * 10 + 1;
 		} else if (e.getSource() == TwoButton) {
-			
+			TextArea.setText(TextArea.getText() + "2");
+			num1 = num1 * 10 + 2;
 		} else if (e.getSource() == ThreeButton) {
-			
-		} else {
-			System.out.println("eeeeeeeekkkkkkkkk!");
+			TextArea.setText(TextArea.getText() + "3");
+			num1 = num1 * 10 + 3;
+		} else if (e.getSource() == FourButton) {
+			TextArea.setText(TextArea.getText() + "4");
+			num1 = num1 * 10 + 4;
+		} else if (e.getSource() == FiveButton) {
+			TextArea.setText(TextArea.getText() + "5");
+			num1 = num1 * 10 + 5;
+		} else if (e.getSource() == SixButton) {
+			TextArea.setText(TextArea.getText() + "6");
+			num1 = num1 * 10 + 6;
+		} else if (e.getSource() == SevenButton) {
+			TextArea.setText(TextArea.getText() + "7");
+			num1 = num1 * 10 + 7;
+		} else if (e.getSource() == EightButton) {
+			TextArea.setText(TextArea.getText() + "8");
+			num1 = num1 * 10 + 8;
+		} else if (e.getSource() == NineButton) {
+			TextArea.setText(TextArea.getText() + "9");
+			num1 = num1 * 10 + 9;
+		} else if (e.getSource() == EqualsButton) {
+			calculate();
+		} else if (e.getSource() == AdditionButton) {
+			// TODO
+		} else if (e.getSource() == SubtractionButton) {
+			// TODO
+		} else if (e.getSource() == MultiplicationButton) {
+			// TODO
+		} else if (e.getSource() == DivisionButton) {
+			// TODO
+		} else if (e.getSource() == ClearButton) {
+			// TODO
+		} else if (e.getSource() == DecimalButton) {
+			// TODO
 		}
 	}
 		
 		
->>>>>>> Stashed changes
 	
-	public void calculate(String input) {
+	public void calculate() {
 
+		// TODO
 		
 	}
 
@@ -178,4 +200,5 @@ public class Calculator {
 		Calculator calc = new Calculator();
 
 	}
+
 }
