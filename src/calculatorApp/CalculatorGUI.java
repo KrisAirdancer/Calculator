@@ -31,11 +31,22 @@ public class CalculatorGUI {
 		buttonPanel.setBackground(Color.LIGHT_GRAY);
 		
 		// Crating a panel to hold the input/output display label
+<<<<<<< Updated upstream
 		JPanel displayPanel = new JPanel();
 		displayPanel.setBackground(Color.LIGHT_GRAY);
 		
 		// Creating a JLabel to display input and output
 		JLabel displayLabel = new JLabel();
+=======
+//		JPanel displayPanel = new JPanel();
+//		displayPanel.setBackground(Color.LIGHT_GRAY);
+//		displayPanel.setSize(240, 150);
+//		
+		// Creating a Text Field to display input and output
+		textArea = new JTextField();
+		textArea.setSize(200, 50);
+		textArea.setEditable(false);
+>>>>>>> Stashed changes
 		
 		// Adding display label to display panel
 		displayPanel.add(displayLabel);
@@ -107,6 +118,29 @@ public class CalculatorGUI {
 		frame.setVisible(true);
 	}
 	
+<<<<<<< Updated upstream
+=======
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		System.out.println("It Worked!");
+		
+		if (e.getSource() == ZeroButton) {
+			textArea.setText("1");
+			Calculator.num1 = num1 * 10 + 1;
+			
+		} else if (e.getSource() == OneButton) {
+			
+		} else if (e.getSource() == TwoButton) {
+			
+		} else if (e.getSource() == ThreeButton) {
+			
+		} else {
+			System.out.println("eeeeeeeekkkkkkkkk!");
+		}
+	}
+		
+>>>>>>> Stashed changes
 	public static void main(String[] args) {
 		
 		
