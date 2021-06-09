@@ -140,6 +140,13 @@ public class Calculator implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		// User input of numbers stored in num variable
+		// When operator or equals button is pressed,
+			// If operatorPending == true, calculate result and update result (result = result +-*/ num) <- switch statement
+			// If operatorPending == false, the operator is stored in the operator variable and num is stored in the result variable, num is set to 0
+					// operatorPending boolean is also updated to true
+		// When next number is entered it is stored in num, which is now empty
+		
 		if (e.getSource() == ZeroButton) {
 			TextArea.setText(TextArea.getText() + "0");
 			num1 = num1 * 10 + 0;
@@ -173,15 +180,22 @@ public class Calculator implements ActionListener {
 		} else if (e.getSource() == EqualsButton) {
 			calculate();
 		} else if (e.getSource() == AdditionButton) {
-			// TODO
+			TextArea.setText(""); // Clear the text field
+			operator = '+';
 		} else if (e.getSource() == SubtractionButton) {
-			// TODO
+			TextArea.setText("");
+			operator = '-';
 		} else if (e.getSource() == MultiplicationButton) {
-			// TODO
+			TextArea.setText("");
+			operator = '*';
 		} else if (e.getSource() == DivisionButton) {
-			// TODO
+			TextArea.setText("");
+			operator = '/';
 		} else if (e.getSource() == ClearButton) {
-			// TODO
+			TextArea.setText("");
+			num1 = 0;
+			num2 = 0;
+			result = 0;
 		} else if (e.getSource() == DecimalButton) {
 			// TODO
 		}
@@ -192,6 +206,29 @@ public class Calculator implements ActionListener {
 	public void calculate() {
 
 		// TODO
+		// Use switch statement to handle the operators
+		
+		switch (operator) {
+			case '+':
+				System.out.println("num1: " + num1 + ", num2: " + num2);
+				result = num1 + num2;
+				TextArea.setText(String.valueOf(result));
+				break;
+			case '-':
+				result = num1 - num2;
+				TextArea.setText(String.valueOf(result));
+				break;
+			case '*':
+				result = num1 * num2;
+				TextArea.setText(String.valueOf(result));
+				break;
+			case '/':
+				result = num1 / num2;
+				TextArea.setText(String.valueOf(result));
+				break;
+			default:
+				break;
+		}
 		
 	}
 
