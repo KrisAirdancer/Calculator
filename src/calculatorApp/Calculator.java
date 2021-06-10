@@ -17,7 +17,7 @@ public class Calculator implements ActionListener {
 
 	private JButton ZeroButton, OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton,
 	EightButton, NineButton, EqualsButton, AdditionButton, SubtractionButton, MultiplicationButton, DivisionButton,
-	ClearButton, DecimalButton;
+	ClearButton, DecimalButton, negativeButton;
 	private double num, result;
 	private char operator;
 	private JTextField TextArea;
@@ -73,6 +73,7 @@ public class Calculator implements ActionListener {
 		DivisionButton = new JButton("/");
 		ClearButton = new JButton("C");
 		DecimalButton = new JButton(".");
+		negativeButton = new JButton("+/-");
 		
 		// Setting button colors - SET THESE LATER
 //		ZeroButton.setBackground(Color.GRAY);
@@ -110,6 +111,7 @@ public class Calculator implements ActionListener {
 		DivisionButton.addActionListener(this);
 		ClearButton.addActionListener(this);
 		DecimalButton.addActionListener(this);
+		negativeButton.addActionListener(this);
 		
 		
 		// Adding buttons to the calculator panel
@@ -130,6 +132,7 @@ public class Calculator implements ActionListener {
 		buttonPanel.add(EqualsButton);
 		buttonPanel.add(DivisionButton);
 		buttonPanel.add(DecimalButton);
+		buttonPanel.add(negativeButton);
 		
 		// Adding the panels to the window
 //		frame.add(displayPanel);
@@ -244,6 +247,9 @@ public class Calculator implements ActionListener {
 			System.out.println(num);
 			TextArea.setText(stringTemp);
 			decimalCheck = true;
+		} else if (e.getSource() == negativeButton) {
+			num = num * -1;
+			TextArea.setText(String.valueOf(num));
 		}
 	}
 		
