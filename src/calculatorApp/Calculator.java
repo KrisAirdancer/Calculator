@@ -21,12 +21,13 @@ public class Calculator implements ActionListener {
 	private double num, result;
 	private char operator;
 	private JTextField TextArea;
-	private boolean firstCalculation;
+	private boolean firstCalculation, decimalCheck;
 	
 	public Calculator() {
 				
-		// Setting boolan flag
+		// Setting boolean flags
 		firstCalculation = true;
+		decimalCheck = false;
 		
 		// Creating a window for the calculator
 		JFrame frame = new JFrame();
@@ -154,57 +155,58 @@ public class Calculator implements ActionListener {
 		if (e.getSource() == ZeroButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "0");
-			num = num * 10 + 0;
+			decimalCheck(0);
 			
 		} else if (e.getSource() == OneButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "1");
-			num = num * 10 + 1;
+			decimalCheck(1);
 			
 		} else if (e.getSource() == TwoButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "2");
-			num = num * 10 + 2;
+			decimalCheck(2);
 			
 		} else if (e.getSource() == ThreeButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "3");
-			num = num * 10 + 3;
+			decimalCheck(3);
 			
 		} else if (e.getSource() == FourButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "4");
-			num = num * 10 + 4;
+			decimalCheck(4);
 			
 		} else if (e.getSource() == FiveButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "5");
-			num = num * 10 + 5;
+			decimalCheck(5);
 			
 		} else if (e.getSource() == SixButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "6");
-			num = num * 10 + 6;
+			decimalCheck(6);
 			
 		} else if (e.getSource() == SevenButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "7");
-			num = num * 10 + 7;
+			decimalCheck(7);
 			
 		} else if (e.getSource() == EightButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "8");
-			num = num * 10 + 8;
+			decimalCheck(8);
 			
 		} else if (e.getSource() == NineButton) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "9");
-			num = num * 10 + 9;
+			decimalCheck(9);
 			
 		} else if (e.getSource() == EqualsButton) {
 			calculate();
 			num = result;
 			firstCalculation = true;
+			decimalCheck = false;
 			
 		} else if (e.getSource() == AdditionButton) {
 			TextArea.setText(""); // Clear the text field
@@ -231,20 +233,23 @@ public class Calculator implements ActionListener {
 			num = 0;
 			result = 0;
 			firstCalculation = true;
+			decimalCheck = false;
 			
 		} else if (e.getSource() == DecimalButton) {
-			// TODO
+			int temp = (int) num;
+			System.out.println(temp);
+			String stringTemp = String.valueOf(temp) + ".";
+			System.out.println(stringTemp);
+			num = Double.parseDouble(stringTemp);
+			System.out.println(num);
+			TextArea.setText(stringTemp);
+			decimalCheck = true;
 		}
 	}
 		
 		
 	
 	public void calculate() {
-		
-//		if (firstCalculation) {
-//			firstCalculation = false;
-//			return;
-//		}
 		
 		switch (operator) {
 			case '+':
@@ -284,11 +289,25 @@ public class Calculator implements ActionListener {
 	
 	public void storeNum() {
 		if (firstCalculation) {
+			System.out.println("result: " + result + ", num: " + num);
 			result = num;
 			num = 0;
 			firstCalculation = false;
+			System.out.println("result: " + result + ", num: " + num);
 		} else {
 			calculate();
+		}
+	}
+	
+	public void decimalCheck(int value) {
+		if (decimalCheck) {
+			int temp = (int) num;
+			String stringTemp = String.valueOf(temp) + "." + value;
+			num = Double.parseDouble(stringTemp);
+			TextArea.setText(stringTemp);
+			decimalCheck = false;
+		} else {
+			num = num * 10 + value;
 		}
 	}
 	
