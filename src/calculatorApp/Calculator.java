@@ -18,12 +18,16 @@ public class Calculator implements ActionListener {
 	private JButton ZeroButton, OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton,
 	EightButton, NineButton, EqualsButton, AdditionButton, SubtractionButton, MultiplicationButton, DivisionButton,
 	ClearButton, DecimalButton;
-	private double num1, num2, result;
+	private double num, result;
 	private char operator;
 	private JTextField TextArea;
+	private boolean firstCalculation;
 	
 	public Calculator() {
 				
+		// Setting boolan flag
+		firstCalculation = true;
+		
 		// Creating a window for the calculator
 		JFrame frame = new JFrame();
 		frame.setTitle("Calculator");
@@ -148,54 +152,86 @@ public class Calculator implements ActionListener {
 		// When next number is entered it is stored in num, which is now empty
 		
 		if (e.getSource() == ZeroButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "0");
-			num1 = num1 * 10 + 0;
+			num = num * 10 + 0;
+			
 		} else if (e.getSource() == OneButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "1");
-			num1 = num1 * 10 + 1;
+			num = num * 10 + 1;
+			
 		} else if (e.getSource() == TwoButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "2");
-			num1 = num1 * 10 + 2;
+			num = num * 10 + 2;
+			
 		} else if (e.getSource() == ThreeButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "3");
-			num1 = num1 * 10 + 3;
+			num = num * 10 + 3;
+			
 		} else if (e.getSource() == FourButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "4");
-			num1 = num1 * 10 + 4;
+			num = num * 10 + 4;
+			
 		} else if (e.getSource() == FiveButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "5");
-			num1 = num1 * 10 + 5;
+			num = num * 10 + 5;
+			
 		} else if (e.getSource() == SixButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "6");
-			num1 = num1 * 10 + 6;
+			num = num * 10 + 6;
+			
 		} else if (e.getSource() == SevenButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "7");
-			num1 = num1 * 10 + 7;
+			num = num * 10 + 7;
+			
 		} else if (e.getSource() == EightButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "8");
-			num1 = num1 * 10 + 8;
+			num = num * 10 + 8;
+			
 		} else if (e.getSource() == NineButton) {
+			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "9");
-			num1 = num1 * 10 + 9;
+			num = num * 10 + 9;
+			
 		} else if (e.getSource() == EqualsButton) {
 			calculate();
+			num = result;
+			firstCalculation = true;
+			
 		} else if (e.getSource() == AdditionButton) {
 			TextArea.setText(""); // Clear the text field
 			operator = '+';
+			storeNum();
+			
 		} else if (e.getSource() == SubtractionButton) {
 			TextArea.setText("");
 			operator = '-';
+			storeNum();
+			
 		} else if (e.getSource() == MultiplicationButton) {
 			TextArea.setText("");
 			operator = '*';
+			storeNum();
+			
 		} else if (e.getSource() == DivisionButton) {
 			TextArea.setText("");
 			operator = '/';
+			storeNum();
+			
 		} else if (e.getSource() == ClearButton) {
 			TextArea.setText("");
-			num1 = 0;
-			num2 = 0;
+			num = 0;
 			result = 0;
+			firstCalculation = true;
+			
 		} else if (e.getSource() == DecimalButton) {
 			// TODO
 		}
@@ -204,34 +240,58 @@ public class Calculator implements ActionListener {
 		
 	
 	public void calculate() {
-
-		// TODO
-		// Use switch statement to handle the operators
+		
+//		if (firstCalculation) {
+//			firstCalculation = false;
+//			return;
+//		}
 		
 		switch (operator) {
 			case '+':
-				System.out.println("num1: " + num1 + ", num2: " + num2);
-				result = num1 + num2;
-				TextArea.setText(String.valueOf(result));
+				result = result + num;
 				break;
 			case '-':
-				result = num1 - num2;
-				TextArea.setText(String.valueOf(result));
+				result = result - num;
 				break;
 			case '*':
-				result = num1 * num2;
-				TextArea.setText(String.valueOf(result));
+				result = result * num;
 				break;
 			case '/':
-				result = num1 / num2;
-				TextArea.setText(String.valueOf(result));
+				if (num == 0) { // Check for division by zero. If so, display error message.
+					TextArea.setText("DivZero Error");
+					num = 0;
+					result = 0;
+					return;
+				}
+				result = result / num;
 				break;
 			default:
 				break;
 		}
-		
+		TextArea.setText(String.valueOf(result));
+		num = 0; // Reset num
 	}
 
+	/**
+	 * Checks if the calculator is currently displaying the result of a previous calculation.
+	 * If true, it clears the text area. Otherwise, it does nothing.
+	 */
+	public void clearDisplayedResult() {
+		if (!TextArea.getText().isEmpty() && Double.parseDouble(TextArea.getText()) == result) {
+			TextArea.setText("");
+		}
+	}
+	
+	public void storeNum() {
+		if (firstCalculation) {
+			result = num;
+			num = 0;
+			firstCalculation = false;
+		} else {
+			calculate();
+		}
+	}
+	
 	public static void main(String[] args) {
 
 		Calculator calc = new Calculator();
