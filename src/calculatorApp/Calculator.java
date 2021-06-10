@@ -273,6 +273,7 @@ public class Calculator implements ActionListener {
 			default:
 				break;
 		}
+		roundResult();
 		TextArea.setText(String.valueOf(result));
 		num = 0; // Reset num
 	}
@@ -309,6 +310,10 @@ public class Calculator implements ActionListener {
 		} else {
 			num = num * 10 + value;
 		}
+	}
+	
+	public void roundResult() {
+		result = (double) Math.round(result * 100) / 100;
 	}
 	
 	public static void main(String[] args) {
