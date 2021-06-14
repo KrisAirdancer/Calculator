@@ -3,6 +3,7 @@ package calculatorApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -24,6 +25,7 @@ public class Calculator implements ActionListener {
 	private char operator;
 	private JTextField TextArea;
 	private boolean firstCalculation, decimalCheck;
+	Font text = new Font("Calibri", Font.BOLD, 16);
 	
 	public Calculator() {
 				
@@ -34,29 +36,23 @@ public class Calculator implements ActionListener {
 		// Creating a window for the calculator
 		JFrame frame = new JFrame();
 		frame.setTitle("Calculator");
-		frame.setLayout(new GridLayout(1, 0));
-		frame.setSize(new Dimension(250, 350));
-//		frame.setPreferredSize(new Dimension(250, 350));
+		frame.setLayout(new GridLayout());
+		frame.setPreferredSize(new Dimension(300, 350)); // Setting the size of the calculator
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Tell the program to terminate when the "X" button is clicked
-//		frame.setResizable(false); // Prevent resizing of the window
+		frame.setResizable(false); // Prevent resizing of the window
 		
 		// Creating GridBagConstraints for GridBagLayout
 		GridBagConstraints gBC = new GridBagConstraints();
 		
 		// Creating a panel to hold the calculator buttons
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setSize(new Dimension(250, 350));
-		buttonPanel.setPreferredSize(new Dimension(250, 350));
-		buttonPanel.setMinimumSize(new Dimension(250, 350));
 		buttonPanel.setLayout(new GridBagLayout());
 		
 		// Creating a Text Field to display input and output
 		TextArea = new JTextField();
 		TextArea.setBackground(Color.LIGHT_GRAY);
+		TextArea.setFont(new Font("Calibri", Font.BOLD, 25));
 		TextArea.setEditable(false);
-		
-		// Adding display label to display panel
-//		displayPanel.add(textArea);
 		
 		// Creating buttons for the calculator
 		ZeroButton = new JButton("0");
@@ -78,11 +74,25 @@ public class Calculator implements ActionListener {
 		DecimalButton = new JButton(".");
 		negativeButton = new JButton("+/-");
 		
-		// Setting button sizes
-		Dimension buttonDim = new Dimension(20, 20);
-		
-//		ClearButton.setPreferredSize(buttonDim);
-//		negativeButton.setPreferredSize(buttonDim);
+		// Setting buttons' font size
+		ZeroButton.setFont(text);
+		OneButton.setFont(text);
+		TwoButton.setFont(text);
+		ThreeButton.setFont(text);
+		FourButton.setFont(text);
+		FiveButton.setFont(text);
+		SixButton.setFont(text);
+		SevenButton.setFont(text);
+		EightButton.setFont(text);
+		NineButton.setFont(text);
+		EqualsButton.setFont(text);
+		AdditionButton.setFont(text);
+		SubtractionButton.setFont(text);
+		MultiplicationButton.setFont(text);
+		DivisionButton.setFont(text);
+		ClearButton.setFont(text);
+		DecimalButton.setFont(text);
+		negativeButton.setFont(text);
 		
 		// Adding ActionListeners to buttons
 		ZeroButton.addActionListener(this);
@@ -103,52 +113,36 @@ public class Calculator implements ActionListener {
 		ClearButton.addActionListener(this);
 		DecimalButton.addActionListener(this);
 		negativeButton.addActionListener(this);
-		
-		
-		
+
 		// Adding buttons to the frame panel
-		
+		// Setting the buttons to fill the panel and frame
+		gBC.weightx = 1;
+		gBC.weighty = 1;
+		// Setting the width and height of the buttons (in terms of the grid)
 		gBC.gridwidth = 1;
 		gBC.gridheight = 1;
-		gBC.fill = GridBagConstraints.BOTH;
+		gBC.fill = GridBagConstraints.BOTH; // Set buttons to fill their grid space
 		
 		// Loop for row number
 		for (int index = 0; index < 5; index++) {
 			gBC.gridy = index;
-			System.out.println("index: " + index);
 			// Loop for column number
 			for (int i = 0; i < 4; i++) {
-				System.out.println("i: " + i);
 				gBC.gridx = i;
 				
-				if (index == 0 && i == 0) {
-					System.out.println("gBC.gridx: " + gBC.gridx + ", gBC.gridy: " + gBC.gridy);
-					gBC.gridx = 0;
-					gBC.gridy = 0;
-					gBC.gridwidth = 1;
-					gBC.gridheight = 1;
-					// Resetting variables
-					gBC.gridx = 0;
-					gBC.gridy = 0;
-					gBC.gridwidth = 1;
-					gBC.gridheight = 1;
-					
+				if (index == 0 && i == 0) {					
 					buttonPanel.add(ClearButton, gBC);
 				} else if (index == 0 && i == 1) {
-					System.out.println("gBC.gridx: " + gBC.gridx + ", gBC.gridy: " + gBC.gridy);
 					buttonPanel.add(negativeButton, gBC);
 				} else if (index == 0 && i == 2) {
-					System.out.println("gBC.gridx: " + gBC.gridx + ", gBC.gridy: " + gBC.gridy);
-					buttonPanel.add(ClearButton, gBC);
-				} else if (index == 0 && i == 3) {
-					System.out.println("gBC.gridx: " + gBC.gridx + ", gBC.gridy: " + gBC.gridy);
 					gBC.gridx = 2;
 					gBC.gridwidth = 2;
 					buttonPanel.add(TextArea, gBC);
 					// Resetting variables
 					gBC.gridwidth = 1;
 					gBC.gridx = 3;
-					System.out.println("gBC.gridx: " + gBC.gridx + ", gBC.gridy: " + gBC.gridy);
+				} else if (index == 0 && i == 3) {
+					// Do nothing
 				} else if (index == 1 && i == 0) {
 					buttonPanel.add(SevenButton, gBC);
 				} else if (index == 1 && i == 1) {
@@ -185,193 +179,9 @@ public class Calculator implements ActionListener {
 			}
 		}
 		
-// ********************
-		
-//		//Row 0
-//		gBC.gridx = 0;
-//		gBC.gridy = 0;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		gBC.fill = GridBagConstraints.BOTH;
-////		gBC.fill = GridBagConstraints.VERTICAL;
-//		buttonPanel.add(ClearButton, gBC);
-//		
-//		gBC.gridx = 1;
-//		gBC.gridy = 0;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(negativeButton, gBC);
-//		
-//		gBC.gridx = 2;
-//		gBC.gridy = 0;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 2;
-//		gBC.gridheight = 1;
-//		gBC.fill = GridBagConstraints.HORIZONTAL;
-//		buttonPanel.add(TextArea, gBC);
-//		
-//		// Row 1
-//		gBC.gridx = 0;
-//		gBC.gridy = 1;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-////		gBC.anchor = GridBagConstraints.NORTH;
-//		buttonPanel.add(SevenButton, gBC);
-//		
-//		gBC.gridx = 1;
-//		gBC.gridy = 1;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(EightButton, gBC);
-//
-//		gBC.gridx = 2;
-//		gBC.gridy = 1;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(NineButton, gBC);
-//		
-//		gBC.gridx = 3;
-//		gBC.gridy = 1;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(DivisionButton, gBC);
-//		
-//		// Row 2
-//		gBC.gridx = 0;
-//		gBC.gridy = 2;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-////		gBC.anchor = GridBagConstraints.NORTH;
-//		buttonPanel.add(FourButton, gBC);
-//		
-//		gBC.gridx = 1;
-//		gBC.gridy = 2;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(FiveButton, gBC);
-//
-//		gBC.gridx = 2;
-//		gBC.gridy = 2;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(SixButton, gBC);
-//		
-//		gBC.gridx = 3;
-//		gBC.gridy = 2;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(MultiplicationButton, gBC);
-//		
-//		// Row 3
-//		gBC.gridx = 0;
-//		gBC.gridy = 3;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-////		gBC.anchor = GridBagConstraints.NORTH;
-//		buttonPanel.add(OneButton, gBC);
-//		
-//		gBC.gridx = 1;
-//		gBC.gridy = 3;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(TwoButton, gBC);
-//
-//		gBC.gridx = 2;
-//		gBC.gridy = 3;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(ThreeButton, gBC);
-//		
-//		gBC.gridx = 3;
-//		gBC.gridy = 3;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(SubtractionButton, gBC);
-//		
-//		// Row 4
-//		gBC.gridx = 0;
-//		gBC.gridy = 4;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-////		gBC.anchor = GridBagConstraints.NORTH;
-//		buttonPanel.add(DecimalButton, gBC);
-//		
-//		gBC.gridx = 1;
-//		gBC.gridy = 4;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(ZeroButton, gBC);
-//
-//		gBC.gridx = 2;
-//		gBC.gridy = 4;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(EqualsButton, gBC);
-//		
-//		gBC.gridx = 3;
-//		gBC.gridy = 4;
-////		gBC.weighty = 1;
-////		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 1;
-//		buttonPanel.add(AdditionButton, gBC);
-		
-// **********************		
-		
-		// Adding the panels to the window
-//		frame.add(displayPanel);
-//		frame.add(TextArea);
-		
-		// gBC for buttonPanel
-//		gBC.gridx = 0;
-//		gBC.gridy = 0;
-//		gBC.weighty = 1;
-//		gBC.weightx = 1;
-//		gBC.gridwidth = 1;
-//		gBC.gridheight = 2;
-//		gBC.fill = GridBagConstraints.BOTH;
-		
-		frame.add(buttonPanel, gBC);		
-		
-		// Making the panel visible
 		buttonPanel.setVisible(true);
+		frame.add(buttonPanel);		
 		frame.pack();
-		// Making the window visible
 		frame.setVisible(true);
 	}
 	
