@@ -1,7 +1,10 @@
 package calculatorApp;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -22,6 +25,7 @@ public class Calculator implements ActionListener {
 	private char operator;
 	private JTextField TextArea;
 	private boolean firstCalculation, decimalCheck;
+	Font text = new Font("Calibri", Font.BOLD, 16);
 	
 	public Calculator() {
 				
@@ -32,28 +36,23 @@ public class Calculator implements ActionListener {
 		// Creating a window for the calculator
 		JFrame frame = new JFrame();
 		frame.setTitle("Calculator");
-		frame.setLayout(new GridLayout(2, 1));
-		frame.setSize(new Dimension(250, 350));
+		frame.setLayout(new GridLayout());
+		frame.setPreferredSize(new Dimension(300, 350)); // Setting the size of the calculator
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Tell the program to terminate when the "X" button is clicked
 		frame.setResizable(false); // Prevent resizing of the window
 		
+		// Creating GridBagConstraints for GridBagLayout
+		GridBagConstraints gBC = new GridBagConstraints();
+		
 		// Creating a panel to hold the calculator buttons
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(5, 4) );
-		buttonPanel.setBackground(Color.LIGHT_GRAY);
+		buttonPanel.setLayout(new GridBagLayout());
 		
-		// Crating a panel to hold the input/output display label
-//		JPanel displayPanel = new JPanel();
-//		displayPanel.setBackground(Color.LIGHT_GRAY);
-//		displayPanel.setSize(240, 150);
-//		
 		// Creating a Text Field to display input and output
 		TextArea = new JTextField();
-		TextArea.setSize(200, 50);
+		TextArea.setBackground(Color.LIGHT_GRAY);
+		TextArea.setFont(new Font("Calibri", Font.BOLD, 25));
 		TextArea.setEditable(false);
-		
-		// Adding display label to display panel
-//		displayPanel.add(textArea);
 		
 		// Creating buttons for the calculator
 		ZeroButton = new JButton("0");
@@ -75,23 +74,25 @@ public class Calculator implements ActionListener {
 		DecimalButton = new JButton(".");
 		negativeButton = new JButton("+/-");
 		
-		// Setting button colors - SET THESE LATER
-//		ZeroButton.setBackground(Color.GRAY);
-//		OneButton.setBackground(Color.GRAY);
-//		TwoButton.setBackground(Color.GRAY);
-//		ThreeButton.setBackground(Color.GRAY);
-//		FourButton.setBackground(Color.GRAY);
-//		FiveButton.setBackground(Color.GRAY);
-//		SixButton.setBackground(Color.GRAY);
-//		SevenButton.setBackground(Color.GRAY);
-//		EightButton.setBackground(Color.GRAY);
-//		NineButton.setBackground(Color.GRAY);
-//		EqualsButton.setBackground(Color.DARK_GRAY);
-//		AdditionButton.setBackground(Color.BLUE);
-//		SubtractionButton.setBackground(Color.BLUE);
-//		MultiplicationButton.setBackground(Color.BLUE);
-//		DivisionButton.setBackground(Color.BLUE);
-//		ClearButton.setBackground(Color.BLUE);
+		// Setting buttons' font size
+		ZeroButton.setFont(text);
+		OneButton.setFont(text);
+		TwoButton.setFont(text);
+		ThreeButton.setFont(text);
+		FourButton.setFont(text);
+		FiveButton.setFont(text);
+		SixButton.setFont(text);
+		SevenButton.setFont(text);
+		EightButton.setFont(text);
+		NineButton.setFont(text);
+		EqualsButton.setFont(text);
+		AdditionButton.setFont(text);
+		SubtractionButton.setFont(text);
+		MultiplicationButton.setFont(text);
+		DivisionButton.setFont(text);
+		ClearButton.setFont(text);
+		DecimalButton.setFont(text);
+		negativeButton.setFont(text);
 		
 		// Adding ActionListeners to buttons
 		ZeroButton.addActionListener(this);
@@ -112,36 +113,75 @@ public class Calculator implements ActionListener {
 		ClearButton.addActionListener(this);
 		DecimalButton.addActionListener(this);
 		negativeButton.addActionListener(this);
+
+		// Adding buttons to the frame panel
+		// Setting the buttons to fill the panel and frame
+		gBC.weightx = 1;
+		gBC.weighty = 1;
+		// Setting the width and height of the buttons (in terms of the grid)
+		gBC.gridwidth = 1;
+		gBC.gridheight = 1;
+		gBC.fill = GridBagConstraints.BOTH; // Set buttons to fill their grid space
 		
+		// Loop for row number
+		for (int index = 0; index < 5; index++) {
+			gBC.gridy = index;
+			// Loop for column number
+			for (int i = 0; i < 4; i++) {
+				gBC.gridx = i;
+				
+				if (index == 0 && i == 0) {					
+					buttonPanel.add(ClearButton, gBC);
+				} else if (index == 0 && i == 1) {
+					buttonPanel.add(negativeButton, gBC);
+				} else if (index == 0 && i == 2) {
+					gBC.gridx = 2;
+					gBC.gridwidth = 2;
+					buttonPanel.add(TextArea, gBC);
+					// Resetting variables
+					gBC.gridwidth = 1;
+					gBC.gridx = 3;
+				} else if (index == 0 && i == 3) {
+					// Do nothing
+				} else if (index == 1 && i == 0) {
+					buttonPanel.add(SevenButton, gBC);
+				} else if (index == 1 && i == 1) {
+					buttonPanel.add(EightButton, gBC);
+				} else if (index == 1 && i == 2) {
+					buttonPanel.add(NineButton, gBC);
+				} else if (index == 1 && i == 3) {
+					buttonPanel.add(DivisionButton, gBC);
+				} else if (index == 2 && i == 0) {
+					buttonPanel.add(FourButton, gBC);
+				} else if (index == 2 && i == 1) {
+					buttonPanel.add(FiveButton, gBC);
+				} else if (index == 2 && i == 2) {
+					buttonPanel.add(SixButton, gBC);
+				} else if (index == 2 && i == 3) {
+					buttonPanel.add(MultiplicationButton, gBC);
+				} else if (index == 3 && i == 0) {
+					buttonPanel.add(OneButton, gBC);
+				} else if (index == 3 && i == 1) {
+					buttonPanel.add(TwoButton, gBC);
+				} else if (index == 3 && i == 2) {
+					buttonPanel.add(ThreeButton, gBC);
+				} else if (index == 3 && i == 3) {
+					buttonPanel.add(SubtractionButton, gBC);
+				} else if (index == 4 && i == 0) {
+					buttonPanel.add(DecimalButton, gBC);
+				} else if (index == 4 && i == 1) {
+					buttonPanel.add(ZeroButton, gBC);
+				} else if (index == 4 && i == 2) {
+					buttonPanel.add(EqualsButton, gBC);
+				} else if (index == 4 && i == 3) {
+					buttonPanel.add(AdditionButton, gBC);
+				}
+			}
+		}
 		
-		// Adding buttons to the calculator panel
-		buttonPanel.add(SevenButton);
-		buttonPanel.add(EightButton);
-		buttonPanel.add(NineButton);
-		buttonPanel.add(AdditionButton);
-		buttonPanel.add(FourButton);
-		buttonPanel.add(FiveButton);
-		buttonPanel.add(SixButton);
-		buttonPanel.add(SubtractionButton);		
-		buttonPanel.add(OneButton);
-		buttonPanel.add(TwoButton);
-		buttonPanel.add(ThreeButton);		
-		buttonPanel.add(MultiplicationButton);		
-		buttonPanel.add(ClearButton);
-		buttonPanel.add(ZeroButton);		
-		buttonPanel.add(EqualsButton);
-		buttonPanel.add(DivisionButton);
-		buttonPanel.add(DecimalButton);
-		buttonPanel.add(negativeButton);
-		
-		// Adding the panels to the window
-//		frame.add(displayPanel);
-		frame.add(TextArea);
-		frame.add(buttonPanel);		
-		
-		// Making the panel visible
 		buttonPanel.setVisible(true);
-		// Making the window visible
+		frame.add(buttonPanel);		
+		frame.pack();
 		frame.setVisible(true);
 	}
 	
