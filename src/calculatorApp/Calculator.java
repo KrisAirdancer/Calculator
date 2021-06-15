@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.JButton;
@@ -22,7 +23,7 @@ public class Calculator implements ActionListener {
 	nineB, equalsB, addB, subtractB, multiB, divisionB, clearB, decimalB, negativeB;
 	private double num, result;
 	private char operator;
-	private JTextField TextArea;
+	private JTextField textArea;
 	private Object lastButton;
 	private boolean firstCalculation, decimalCheck;
 	Font text = new Font("Calibri", Font.BOLD, 16);
@@ -49,10 +50,10 @@ public class Calculator implements ActionListener {
 		buttonPanel.setLayout(new GridBagLayout());
 		
 		// Creating a Text Field to display input and output
-		TextArea = new JTextField();
-		TextArea.setBackground(Color.LIGHT_GRAY);
-		TextArea.setFont(new Font("Calibri", Font.BOLD, 25));
-		TextArea.setEditable(false);
+		textArea = new JTextField();
+		textArea.setBackground(Color.LIGHT_GRAY);
+		textArea.setFont(new Font("Calibri", Font.BOLD, 25));
+		textArea.setEditable(false);
 		
 		// Creating buttons for the calculator
 		zeroB = new JButton("0");
@@ -74,45 +75,37 @@ public class Calculator implements ActionListener {
 		decimalB = new JButton(".");
 		negativeB = new JButton("+/-");
 		
+		// Adding JButtons to an ArrayList to consolidate code
+		ArrayList<JButton> buttons = new ArrayList<JButton>();
+		
+		buttons.add(zeroB);
+		buttons.add(oneB);
+		buttons.add(twoB);
+		buttons.add(threeB);
+		buttons.add(fourB);
+		buttons.add(fiveB);
+		buttons.add(sixB);
+		buttons.add(sevenB);
+		buttons.add(eightB);
+		buttons.add(nineB);
+		buttons.add(equalsB);
+		buttons.add(addB);
+		buttons.add(subtractB);
+		buttons.add(multiB);
+		buttons.add(divisionB);
+		buttons.add(clearB);
+		buttons.add(decimalB);
+		buttons.add(negativeB);
+
 		// Setting buttons' font size
-		zeroB.setFont(text);
-		oneB.setFont(text);
-		twoB.setFont(text);
-		threeB.setFont(text);
-		fourB.setFont(text);
-		fiveB.setFont(text);
-		sixB.setFont(text);
-		sevenB.setFont(text);
-		eightB.setFont(text);
-		nineB.setFont(text);
-		equalsB.setFont(text);
-		addB.setFont(text);
-		subtractB.setFont(text);
-		multiB.setFont(text);
-		divisionB.setFont(text);
-		clearB.setFont(text);
-		decimalB.setFont(text);
-		negativeB.setFont(text);
+		for (JButton button : buttons) {
+			button.setFont(text);
+		}
 		
 		// Adding ActionListeners to buttons
-		zeroB.addActionListener(this);
-		oneB.addActionListener(this);
-		twoB.addActionListener(this);
-		threeB.addActionListener(this);
-		fourB.addActionListener(this);
-		fiveB.addActionListener(this);
-		sixB.addActionListener(this);
-		sevenB.addActionListener(this);
-		eightB.addActionListener(this);
-		nineB.addActionListener(this);
-		equalsB.addActionListener(this);
-		addB.addActionListener(this);
-		subtractB.addActionListener(this);
-		multiB.addActionListener(this);
-		divisionB.addActionListener(this);
-		clearB.addActionListener(this);
-		decimalB.addActionListener(this);
-		negativeB.addActionListener(this);
+		for (JButton button : buttons) {
+			button.addActionListener(this);
+		}
 
 		// Adding buttons to the frame panel
 		// Setting the buttons to fill the panel and frame
@@ -137,7 +130,7 @@ public class Calculator implements ActionListener {
 				} else if (index == 0 && i == 2) {
 					gBC.gridx = 2;
 					gBC.gridwidth = 2;
-					buttonPanel.add(TextArea, gBC);
+					buttonPanel.add(textArea, gBC);
 					// Resetting variables
 					gBC.gridwidth = 1;
 					gBC.gridx = 3;
@@ -194,7 +187,7 @@ public class Calculator implements ActionListener {
 		if (lastButton == equalsB && e.getSource() != addB
 				&& e.getSource() != subtractB && e.getSource() != multiB
 				&& e.getSource() != divisionB && e.getSource() != equalsB) {
-			TextArea.setText("");
+			textArea.setText("");
 			num = 0;
 			result = 0;
 			firstCalculation = true;
@@ -204,58 +197,58 @@ public class Calculator implements ActionListener {
 		/* Prevents the program from crashing after a DivZero error b/c
 		 * the program pulls the "DivZero" string from the text field as
 		 * the previous numerical input. */
-		if (TextArea.getText().equals("DivZero")) {
-			TextArea.setText("");
+		if (textArea.getText().equals("DivZero")) {
+			textArea.setText("");
 		}
 		
 		if (e.getSource() == zeroB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "0");
+			textArea.setText(textArea.getText() + "0");
 			decimalCheck(0);
 			
 		} else if (e.getSource() == oneB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "1");
+			textArea.setText(textArea.getText() + "1");
 			decimalCheck(1);
 			
 		} else if (e.getSource() == twoB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "2");
+			textArea.setText(textArea.getText() + "2");
 			decimalCheck(2);
 			
 		} else if (e.getSource() == threeB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "3");
+			textArea.setText(textArea.getText() + "3");
 			decimalCheck(3);
 			
 		} else if (e.getSource() == fourB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "4");
+			textArea.setText(textArea.getText() + "4");
 			decimalCheck(4);
 			
 		} else if (e.getSource() == fiveB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "5");
+			textArea.setText(textArea.getText() + "5");
 			decimalCheck(5);
 			
 		} else if (e.getSource() == sixB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "6");
+			textArea.setText(textArea.getText() + "6");
 			decimalCheck(6);
 			
 		} else if (e.getSource() == sevenB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "7");
+			textArea.setText(textArea.getText() + "7");
 			decimalCheck(7);
 			
 		} else if (e.getSource() == eightB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "8");
+			textArea.setText(textArea.getText() + "8");
 			decimalCheck(8);
 			
 		} else if (e.getSource() == nineB) {
 			clearDisplayedResult();
-			TextArea.setText(TextArea.getText() + "9");
+			textArea.setText(textArea.getText() + "9");
 			decimalCheck(9);
 			
 		} else if (e.getSource() == equalsB) {
@@ -265,27 +258,27 @@ public class Calculator implements ActionListener {
 			decimalCheck = false;
 			
 		} else if (e.getSource() == addB) {
-			TextArea.setText(""); // Clear the text field
+			textArea.setText(""); // Clear the text field
 			operator = '+';
 			storeNum();
 			
 		} else if (e.getSource() == subtractB) {
-			TextArea.setText("");
+			textArea.setText("");
 			operator = '-';
 			storeNum();
 			
 		} else if (e.getSource() == multiB) {
-			TextArea.setText("");
+			textArea.setText("");
 			operator = '*';
 			storeNum();
 			
 		} else if (e.getSource() == divisionB) {
-			TextArea.setText("");
+			textArea.setText("");
 			operator = '/';
 			storeNum();
 			
 		} else if (e.getSource() == clearB) {
-			TextArea.setText("");
+			textArea.setText("");
 			num = 0;
 			result = 0;
 			firstCalculation = true;
@@ -295,12 +288,12 @@ public class Calculator implements ActionListener {
 			int temp = (int) num;
 			String stringTemp = String.valueOf(temp) + ".";
 			num = Double.parseDouble(stringTemp);
-			TextArea.setText(stringTemp);
+			textArea.setText(stringTemp);
 			decimalCheck = true;
 			
 		} else if (e.getSource() == negativeB) {
 			num = num * -1;
-			TextArea.setText(String.valueOf(num));
+			textArea.setText(String.valueOf(num));
 		}
 		
 		// Setting the lastButton variable
@@ -328,7 +321,7 @@ public class Calculator implements ActionListener {
 				break;
 			case '/':
 				if (num == 0) { // Check for division by zero. If so, display error message.
-					TextArea.setText("DivZero");
+					textArea.setText("DivZero");
 					num = 0;
 					result = 0;
 					return;
@@ -344,7 +337,7 @@ public class Calculator implements ActionListener {
 				break;
 		}
 		roundResult();
-		TextArea.setText(String.valueOf(result));
+		textArea.setText(String.valueOf(result));
 	}
 
 	/**
@@ -352,11 +345,15 @@ public class Calculator implements ActionListener {
 	 * If true, it clears the text area. Otherwise, it does nothing.
 	 */
 	public void clearDisplayedResult() {
-		if (!TextArea.getText().isEmpty() && Double.parseDouble(TextArea.getText()) == result) {
-			TextArea.setText("");
+		if (!textArea.getText().isEmpty() && Double.parseDouble(textArea.getText()) == result) {
+			textArea.setText("");
 		}
 	}
 	
+	/**
+	 * Stores the num variable in the result variable if on the first calculation,
+	 * or calls the calculate() method if a calculation needs to be performed.
+	 */
 	public void storeNum() {
 		if (firstCalculation) {
 			result = num;
@@ -376,13 +373,16 @@ public class Calculator implements ActionListener {
 			int temp = (int) num;
 			String stringTemp = String.valueOf(temp) + "." + value;
 			num = Double.parseDouble(stringTemp);
-			TextArea.setText(stringTemp);
+			textArea.setText(stringTemp);
 			decimalCheck = false;
 		} else {
 			num = num * 10 + value;
 		}
 	}
 	
+	/**
+	 * Rounds the result variable to two decimal places.
+	 */
 	public void roundResult() {
 		result = (double) Math.round(result * 100) / 100;
 	}
