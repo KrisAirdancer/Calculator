@@ -193,7 +193,7 @@ public class Calculator implements ActionListener {
 		 * clear button's operation. */
 		if (lastButton == equalsB && e.getSource() != addB
 				&& e.getSource() != subtractB && e.getSource() != multiB
-				&& e.getSource() != divisionB) {
+				&& e.getSource() != divisionB && e.getSource() != equalsB) {
 			TextArea.setText("");
 			num = 0;
 			result = 0;
@@ -293,11 +293,8 @@ public class Calculator implements ActionListener {
 			
 		} else if (e.getSource() == decimalB) {
 			int temp = (int) num;
-			System.out.println(temp);
 			String stringTemp = String.valueOf(temp) + ".";
-			System.out.println(stringTemp);
 			num = Double.parseDouble(stringTemp);
-			System.out.println(num);
 			TextArea.setText(stringTemp);
 			decimalCheck = true;
 			
@@ -311,18 +308,23 @@ public class Calculator implements ActionListener {
 	}
 		
 		
-	
+	/**
+	 * Performs the mathematical operations for the calculator.
+	 */
 	public void calculate() {
-		
+
 		switch (operator) {
 			case '+':
 				result = result + num;
+				num = 0; // Reset num
 				break;
 			case '-':
 				result = result - num;
+				num = 0; // Reset num
 				break;
 			case '*':
 				result = result * num;
+				num = 0; // Reset num
 				break;
 			case '/':
 				if (num == 0) { // Check for division by zero. If so, display error message.
@@ -332,13 +334,17 @@ public class Calculator implements ActionListener {
 					return;
 				}
 				result = result / num;
+				num = 0; // Reset num
 				break;
 			default:
+				/* Triggered if no operator has been pressed but the equals button has
+				 * to prevent the current num and textField from being reset to zero in
+				 * this event. */
+				result = num;
 				break;
 		}
 		roundResult();
 		TextArea.setText(String.valueOf(result));
-		num = 0; // Reset num
 	}
 
 	/**
@@ -353,16 +359,18 @@ public class Calculator implements ActionListener {
 	
 	public void storeNum() {
 		if (firstCalculation) {
-			System.out.println("result: " + result + ", num: " + num);
 			result = num;
 			num = 0;
 			firstCalculation = false;
-			System.out.println("result: " + result + ", num: " + num);
 		} else {
 			calculate();
 		}
 	}
 	
+	/**
+	 * Properly converts the current input to a decimal value so that 
+	 * it can be used for calculations.
+	 */
 	public void decimalCheck(int value) {
 		if (decimalCheck) {
 			int temp = (int) num;
