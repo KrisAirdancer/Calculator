@@ -188,12 +188,9 @@ public class Calculator implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// User input of numbers stored in num variable
-		// When operator or equals button is pressed,
-			// If operatorPending == true, calculate result and update result (result = result +-*/ num) <- switch statement
-			// If operatorPending == false, the operator is stored in the operator variable and num is stored in the result variable, num is set to 0
-					// operatorPending boolean is also updated to true
-		// When next number is entered it is stored in num, which is now empty
+		if (TextArea.getText().equals("DivZero")) {
+			TextArea.setText("");
+		}
 		
 		if (e.getSource() == ZeroButton) {
 			clearDisplayedResult();
@@ -309,7 +306,7 @@ public class Calculator implements ActionListener {
 				break;
 			case '/':
 				if (num == 0) { // Check for division by zero. If so, display error message.
-					TextArea.setText("DivZero Error");
+					TextArea.setText("DivZero");
 					num = 0;
 					result = 0;
 					return;
