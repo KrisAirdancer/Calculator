@@ -18,12 +18,12 @@ import javax.swing.JTextField;
 
 public class Calculator implements ActionListener {
 
-	private JButton ZeroButton, OneButton, TwoButton, ThreeButton, FourButton, FiveButton, SixButton, SevenButton,
-	EightButton, NineButton, EqualsButton, AdditionButton, SubtractionButton, MultiplicationButton, DivisionButton,
-	ClearButton, DecimalButton, negativeButton;
+	private JButton zeroB, oneB, twoB, threeB, fourB, fiveB, sixB, sevenB, eightB,
+	nineB, equalsB, addB, subtractB, multiB, divisionB, clearB, decimalB, negativeB;
 	private double num, result;
 	private char operator;
 	private JTextField TextArea;
+	private Object lastButton;
 	private boolean firstCalculation, decimalCheck;
 	Font text = new Font("Calibri", Font.BOLD, 16);
 	
@@ -55,64 +55,64 @@ public class Calculator implements ActionListener {
 		TextArea.setEditable(false);
 		
 		// Creating buttons for the calculator
-		ZeroButton = new JButton("0");
-		OneButton = new JButton("1");
-		TwoButton = new JButton("2");
-		ThreeButton = new JButton("3");
-		FourButton = new JButton("4");
-		FiveButton = new JButton("5");
-		SixButton = new JButton("6");
-		SevenButton = new JButton("7");
-		EightButton = new JButton("8");
-		NineButton = new JButton("9");
-		EqualsButton = new JButton("=");
-		AdditionButton = new JButton("+");
-		SubtractionButton = new JButton("-");
-		MultiplicationButton = new JButton("x");
-		DivisionButton = new JButton("/");
-		ClearButton = new JButton("C");
-		DecimalButton = new JButton(".");
-		negativeButton = new JButton("+/-");
+		zeroB = new JButton("0");
+		oneB = new JButton("1");
+		twoB = new JButton("2");
+		threeB = new JButton("3");
+		fourB = new JButton("4");
+		fiveB = new JButton("5");
+		sixB = new JButton("6");
+		sevenB = new JButton("7");
+		eightB = new JButton("8");
+		nineB = new JButton("9");
+		equalsB = new JButton("=");
+		addB = new JButton("+");
+		subtractB = new JButton("-");
+		multiB = new JButton("x");
+		divisionB = new JButton("/");
+		clearB = new JButton("C");
+		decimalB = new JButton(".");
+		negativeB = new JButton("+/-");
 		
 		// Setting buttons' font size
-		ZeroButton.setFont(text);
-		OneButton.setFont(text);
-		TwoButton.setFont(text);
-		ThreeButton.setFont(text);
-		FourButton.setFont(text);
-		FiveButton.setFont(text);
-		SixButton.setFont(text);
-		SevenButton.setFont(text);
-		EightButton.setFont(text);
-		NineButton.setFont(text);
-		EqualsButton.setFont(text);
-		AdditionButton.setFont(text);
-		SubtractionButton.setFont(text);
-		MultiplicationButton.setFont(text);
-		DivisionButton.setFont(text);
-		ClearButton.setFont(text);
-		DecimalButton.setFont(text);
-		negativeButton.setFont(text);
+		zeroB.setFont(text);
+		oneB.setFont(text);
+		twoB.setFont(text);
+		threeB.setFont(text);
+		fourB.setFont(text);
+		fiveB.setFont(text);
+		sixB.setFont(text);
+		sevenB.setFont(text);
+		eightB.setFont(text);
+		nineB.setFont(text);
+		equalsB.setFont(text);
+		addB.setFont(text);
+		subtractB.setFont(text);
+		multiB.setFont(text);
+		divisionB.setFont(text);
+		clearB.setFont(text);
+		decimalB.setFont(text);
+		negativeB.setFont(text);
 		
 		// Adding ActionListeners to buttons
-		ZeroButton.addActionListener(this);
-		OneButton.addActionListener(this);
-		TwoButton.addActionListener(this);
-		ThreeButton.addActionListener(this);
-		FourButton.addActionListener(this);
-		FiveButton.addActionListener(this);
-		SixButton.addActionListener(this);
-		SevenButton.addActionListener(this);
-		EightButton.addActionListener(this);
-		NineButton.addActionListener(this);
-		EqualsButton.addActionListener(this);
-		AdditionButton.addActionListener(this);
-		SubtractionButton.addActionListener(this);
-		MultiplicationButton.addActionListener(this);
-		DivisionButton.addActionListener(this);
-		ClearButton.addActionListener(this);
-		DecimalButton.addActionListener(this);
-		negativeButton.addActionListener(this);
+		zeroB.addActionListener(this);
+		oneB.addActionListener(this);
+		twoB.addActionListener(this);
+		threeB.addActionListener(this);
+		fourB.addActionListener(this);
+		fiveB.addActionListener(this);
+		sixB.addActionListener(this);
+		sevenB.addActionListener(this);
+		eightB.addActionListener(this);
+		nineB.addActionListener(this);
+		equalsB.addActionListener(this);
+		addB.addActionListener(this);
+		subtractB.addActionListener(this);
+		multiB.addActionListener(this);
+		divisionB.addActionListener(this);
+		clearB.addActionListener(this);
+		decimalB.addActionListener(this);
+		negativeB.addActionListener(this);
 
 		// Adding buttons to the frame panel
 		// Setting the buttons to fill the panel and frame
@@ -131,9 +131,9 @@ public class Calculator implements ActionListener {
 				gBC.gridx = i;
 				
 				if (index == 0 && i == 0) {					
-					buttonPanel.add(ClearButton, gBC);
+					buttonPanel.add(clearB, gBC);
 				} else if (index == 0 && i == 1) {
-					buttonPanel.add(negativeButton, gBC);
+					buttonPanel.add(negativeB, gBC);
 				} else if (index == 0 && i == 2) {
 					gBC.gridx = 2;
 					gBC.gridwidth = 2;
@@ -144,37 +144,37 @@ public class Calculator implements ActionListener {
 				} else if (index == 0 && i == 3) {
 					// Do nothing
 				} else if (index == 1 && i == 0) {
-					buttonPanel.add(SevenButton, gBC);
+					buttonPanel.add(sevenB, gBC);
 				} else if (index == 1 && i == 1) {
-					buttonPanel.add(EightButton, gBC);
+					buttonPanel.add(eightB, gBC);
 				} else if (index == 1 && i == 2) {
-					buttonPanel.add(NineButton, gBC);
+					buttonPanel.add(nineB, gBC);
 				} else if (index == 1 && i == 3) {
-					buttonPanel.add(DivisionButton, gBC);
+					buttonPanel.add(divisionB, gBC);
 				} else if (index == 2 && i == 0) {
-					buttonPanel.add(FourButton, gBC);
+					buttonPanel.add(fourB, gBC);
 				} else if (index == 2 && i == 1) {
-					buttonPanel.add(FiveButton, gBC);
+					buttonPanel.add(fiveB, gBC);
 				} else if (index == 2 && i == 2) {
-					buttonPanel.add(SixButton, gBC);
+					buttonPanel.add(sixB, gBC);
 				} else if (index == 2 && i == 3) {
-					buttonPanel.add(MultiplicationButton, gBC);
+					buttonPanel.add(multiB, gBC);
 				} else if (index == 3 && i == 0) {
-					buttonPanel.add(OneButton, gBC);
+					buttonPanel.add(oneB, gBC);
 				} else if (index == 3 && i == 1) {
-					buttonPanel.add(TwoButton, gBC);
+					buttonPanel.add(twoB, gBC);
 				} else if (index == 3 && i == 2) {
-					buttonPanel.add(ThreeButton, gBC);
+					buttonPanel.add(threeB, gBC);
 				} else if (index == 3 && i == 3) {
-					buttonPanel.add(SubtractionButton, gBC);
+					buttonPanel.add(subtractB, gBC);
 				} else if (index == 4 && i == 0) {
-					buttonPanel.add(DecimalButton, gBC);
+					buttonPanel.add(decimalB, gBC);
 				} else if (index == 4 && i == 1) {
-					buttonPanel.add(ZeroButton, gBC);
+					buttonPanel.add(zeroB, gBC);
 				} else if (index == 4 && i == 2) {
-					buttonPanel.add(EqualsButton, gBC);
+					buttonPanel.add(equalsB, gBC);
 				} else if (index == 4 && i == 3) {
-					buttonPanel.add(AdditionButton, gBC);
+					buttonPanel.add(addB, gBC);
 				}
 			}
 		}
@@ -187,95 +187,111 @@ public class Calculator implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		/* Prevents the calculator from concatenating the results of two consecutive
+		 * calculations that are separated by an equals operator. Acts like the 
+		 * clear button's operation. */
+		if (lastButton == equalsB && e.getSource() != addB
+				&& e.getSource() != subtractB && e.getSource() != multiB
+				&& e.getSource() != divisionB) {
+			TextArea.setText("");
+			num = 0;
+			result = 0;
+			firstCalculation = true;
+			decimalCheck = false;
+		}
 		
+		/* Prevents the program from crashing after a DivZero error b/c
+		 * the program pulls the "DivZero" string from the text field as
+		 * the previous numerical input. */
 		if (TextArea.getText().equals("DivZero")) {
 			TextArea.setText("");
 		}
 		
-		if (e.getSource() == ZeroButton) {
+		if (e.getSource() == zeroB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "0");
 			decimalCheck(0);
 			
-		} else if (e.getSource() == OneButton) {
+		} else if (e.getSource() == oneB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "1");
 			decimalCheck(1);
 			
-		} else if (e.getSource() == TwoButton) {
+		} else if (e.getSource() == twoB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "2");
 			decimalCheck(2);
 			
-		} else if (e.getSource() == ThreeButton) {
+		} else if (e.getSource() == threeB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "3");
 			decimalCheck(3);
 			
-		} else if (e.getSource() == FourButton) {
+		} else if (e.getSource() == fourB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "4");
 			decimalCheck(4);
 			
-		} else if (e.getSource() == FiveButton) {
+		} else if (e.getSource() == fiveB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "5");
 			decimalCheck(5);
 			
-		} else if (e.getSource() == SixButton) {
+		} else if (e.getSource() == sixB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "6");
 			decimalCheck(6);
 			
-		} else if (e.getSource() == SevenButton) {
+		} else if (e.getSource() == sevenB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "7");
 			decimalCheck(7);
 			
-		} else if (e.getSource() == EightButton) {
+		} else if (e.getSource() == eightB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "8");
 			decimalCheck(8);
 			
-		} else if (e.getSource() == NineButton) {
+		} else if (e.getSource() == nineB) {
 			clearDisplayedResult();
 			TextArea.setText(TextArea.getText() + "9");
 			decimalCheck(9);
 			
-		} else if (e.getSource() == EqualsButton) {
+		} else if (e.getSource() == equalsB) {
 			calculate();
 			num = result;
 			firstCalculation = true;
 			decimalCheck = false;
 			
-		} else if (e.getSource() == AdditionButton) {
+		} else if (e.getSource() == addB) {
 			TextArea.setText(""); // Clear the text field
 			operator = '+';
 			storeNum();
 			
-		} else if (e.getSource() == SubtractionButton) {
+		} else if (e.getSource() == subtractB) {
 			TextArea.setText("");
 			operator = '-';
 			storeNum();
 			
-		} else if (e.getSource() == MultiplicationButton) {
+		} else if (e.getSource() == multiB) {
 			TextArea.setText("");
 			operator = '*';
 			storeNum();
 			
-		} else if (e.getSource() == DivisionButton) {
+		} else if (e.getSource() == divisionB) {
 			TextArea.setText("");
 			operator = '/';
 			storeNum();
 			
-		} else if (e.getSource() == ClearButton) {
+		} else if (e.getSource() == clearB) {
 			TextArea.setText("");
 			num = 0;
 			result = 0;
 			firstCalculation = true;
 			decimalCheck = false;
 			
-		} else if (e.getSource() == DecimalButton) {
+		} else if (e.getSource() == decimalB) {
 			int temp = (int) num;
 			System.out.println(temp);
 			String stringTemp = String.valueOf(temp) + ".";
@@ -284,10 +300,14 @@ public class Calculator implements ActionListener {
 			System.out.println(num);
 			TextArea.setText(stringTemp);
 			decimalCheck = true;
-		} else if (e.getSource() == negativeButton) {
+			
+		} else if (e.getSource() == negativeB) {
 			num = num * -1;
 			TextArea.setText(String.valueOf(num));
 		}
+		
+		// Setting the lastButton variable
+		lastButton = e.getSource();
 	}
 		
 		
