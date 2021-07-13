@@ -201,6 +201,13 @@ public class Calculator implements ActionListener {
 			textArea.setText("");
 		}
 		
+		
+		// ABOVE STUFF IN THIS METHOD HAS BEEN MOVED
+		//**********************************************//
+		// ALL BUTTONS DONE
+		
+		
+		
 		if (e.getSource() == zeroB) {
 			clearDisplayedResult();
 			textArea.setText(textArea.getText() + "0");
@@ -296,11 +303,12 @@ public class Calculator implements ActionListener {
 			textArea.setText(String.valueOf(num));
 		}
 		
+		// MOVED
 		// Setting the lastButton variable
 		lastButton = e.getSource();
 	}
 		
-		
+	// ALL BELOW METHODS HAVE BEEN MOVED	
 	/**
 	 * Performs the mathematical operations for the calculator.
 	 */
